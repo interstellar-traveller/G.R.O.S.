@@ -1,5 +1,6 @@
 import cv2
 import mediapipe as mp
+import numpy as np
 
 
 class handDetector():
@@ -61,7 +62,7 @@ if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
     detector = handDetector()
 
-    file = open("palmdata.txt", mode='a')
+    file = open("./data/palmdata.txt", mode='a')
 
     while True:
         success, img = cap.read()
@@ -70,14 +71,16 @@ if __name__ == "__main__":
         if len(lmList) != 0:
             # pass
             print(lmList)
+            lmList = np.array(lmList)
+            print(lmList.shape)
+            np.savetxt(file, lmList)
 
         if cv2.waitKey(1) == 27:
             cv2.destroyAllWindows()
-            file.close()
             break
-
-        
 
         img = cv2.flip(img, 1)
         cv2.imshow("Image", img)
-        cv2.waitKey(1)
+        cv2.waitKey(100)
+        
+    file.close()

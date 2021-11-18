@@ -89,16 +89,16 @@ with mp_hands.Hands(
             
             print(tai)
             print(z1)
-            # print(tai)
-            # print(x1-z1,x2-z2)
-            # if(tai>=0.62):
-            #       print("全张")
-            # elif(tai<=0.54 and tai >= 0.45):
-            #       print("半张")
-            # elif(tai<=0.32 and tai>=0.25):
-            #       print("微握")
-            # elif(tai<=0.22):
-            #       print("全握")
+            print(tai)
+            print(x1-z1,x2-z2)
+            if(tai>=0.62):
+                  print("全张")
+            elif(tai<=0.54 and tai >= 0.45):
+                  print("半张")
+            elif(tai<=0.32 and tai>=0.25):
+                  print("微握")
+            elif(tai<=0.22):
+                  print("全握")
 
     # Draw the hand annotations on the image.
     image.flags.writeable = True

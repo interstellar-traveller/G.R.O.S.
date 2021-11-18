@@ -1,11 +1,10 @@
-
 import torch
 from torch.autograd import Variable
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
  
 # make fake data
-n_data =torch.ones(100,2)
+n_data = torch.ones(100,2)
 # https://ptorch.com/docs/1/torchlists
 x0 = torch.normal(2*n_data,1) # class0 x data (tensor), shape=(100, 2)
 # torch.normal(means, std, out=None)   means (Tensor) – 均值 , std (Tensor) – 标准差,  out (Tensor) – 可选的输出张量
@@ -17,7 +16,7 @@ x=torch.cat((x0,x1),0).type(torch.FloatTensor) # shape (200, 2) FloatTensor = 32
 y=torch.cat((y0,y1),0).type(torch.LongTensor) # shape (200,) LongTensor = 64-bit integer
  
 x,y=Variable(x),Variable(y)
- 
+
 # plt.scatter(x.data.numpy(),y.data.numpy())
 # plt.show()
  
@@ -37,14 +36,14 @@ net =Net(2,10,2)  # define the network
 plt.ion()  # something about plotting
 plt.show()
  
-optimizer =torch.optim.SGD(net.parameters(),lr=0.002)  #优化参数
+optimizer = torch.optim.SGD(net.parameters(),lr=0.002)  #优化参数
 loss_func = torch.nn.CrossEntropyLoss()  # the target label is NOT an one-hotted
- 
+
 for t in range(1000):
     out = net(x)   #开始训练
 
     loss = loss_func(out,y)  # 一定要预测的值在前，真实值在后
- 
+
     # below are
     optimizer.zero_grad()  # clear gradients for next train
     loss.backward()        # backpropagation, compute gradients
