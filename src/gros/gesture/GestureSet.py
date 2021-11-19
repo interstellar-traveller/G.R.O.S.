@@ -69,9 +69,30 @@ class GestureSet(object):
         status = self.gestures["palm"]
         return status
     
+    def side_palm(self):
+        status = self.gestures["side_palm"]
+        return status
+    
+    def horiz_palm(self):
+        status = self.gestures["horiz_palm"]
+        return status
+    
     def fist(self):
         # fist: all five fingers cruched
         status = self.gestures["fist"]
+        return status
+    
+    def side_fist(self):
+        status = self.gestures["side_fist"]
+        return status
+    
+    def point(self):
+        status = self.gestures["point"]
+        return status
+    
+    def double_point(self):
+        status = self.gestures["double_point"]
+        
         return status
     
 # ges = GestureSet(0)

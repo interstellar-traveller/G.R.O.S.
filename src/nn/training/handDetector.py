@@ -62,7 +62,7 @@ if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
     detector = handDetector()
 
-    file = open("./data/palmdata.txt", mode='a')
+    # file = open("./data/palmdata.txt", mode='a')
 
     while True:
         success, img = cap.read()
@@ -73,7 +73,7 @@ if __name__ == "__main__":
             print(lmList)
             lmList = np.array(lmList)
             print(lmList.shape)
-            np.savetxt(file, lmList)
+            # np.savetxt(file, lmList)
 
         if cv2.waitKey(1) == 27:
             cv2.destroyAllWindows()
@@ -83,4 +83,6 @@ if __name__ == "__main__":
         cv2.imshow("Image", img)
         cv2.waitKey(100)
         
-    file.close()
+    # file.close()
+    
+    cv2.destroyAllWindows()

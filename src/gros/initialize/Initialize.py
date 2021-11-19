@@ -11,6 +11,8 @@ class Initialize(object):
     def __init__(self) -> None:
         """initialize gesture set and action set
         """
+        self.action_activation_list = []
+        self.gesture_activation_list = []
         self.gestures = {}
         self.init_gestures()
         self.actions = {}
@@ -31,6 +33,20 @@ class Initialize(object):
     
     def get_actions(self):
         return self.actions
+    
+    def partial_action_activation(self, activation_list):
+        if len(self.action_activation_list) == 0:
+            for action in self.actions.keys():
+                self.actions[action].update_activation_status(True)
+        for action in self.action_activation_list:
+            self.actions[action].update_activation_status(True)
+            
+    def partial_gesture_activation(self, activation_list):
+        if len(self.gesture_activation_list) == 0:
+            for gesture in self.gestures.keys():
+                self.gestures[gesture].update_activation_status(True)
+        for gesture in self.gesture_activation_list:
+            self.gestures[gesture].update_activation_status(True)
     
     
     

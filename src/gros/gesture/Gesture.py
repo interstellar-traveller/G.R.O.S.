@@ -1,5 +1,5 @@
 class Gesture():
-    def __init__(self, name, activate='', position='') -> None:
+    def __init__(self, name, activate:bool=False, position='') -> None:
         """Initialize a single gesture.
         If a single gesture needs to be detected, then this class will be used.
 

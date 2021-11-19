@@ -12,7 +12,8 @@ class InitializeModeOS(Initialize):
     def __init__(self) -> None:
         super().__init__()
         self.action_activation_list = ["switch", "printscreen", "showDeskTop", "minimize"]
+        self.gesture_activation_list = []
+        self.partial_action_activation(self.action_activation_list)
+        self.partial_gesture_activation(self.gesture_activation_list)
     
-    def partial_action_activation(self):
-        all_actions = super().get_actions()
-        
+    

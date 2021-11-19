@@ -32,11 +32,11 @@ class Net(torch.nn.Module):
         return x
  
  
-net =Net(2,10,2)  # define the network
+net = Net(2,10,2)  # define the network
 plt.ion()  # something about plotting
 plt.show()
  
-optimizer = torch.optim.SGD(net.parameters(),lr=0.002)  #优化参数
+optimizer = torch.optim.SGD(net.parameters(),lr=0.002)  # optimize parameters
 loss_func = torch.nn.CrossEntropyLoss()  # the target label is NOT an one-hotted
 
 for t in range(1000):
