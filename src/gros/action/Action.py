@@ -1,7 +1,10 @@
+import sys
+sys.path.append("f:/0Desk/IBDP/ComputerScience/IA/code/GROS/src")
+
 from gros.action.ActionSet import *
 
 class Action():
-    def __init__(self, action:str, activate:bool=True):
+    def __init__(self, action:str, activate:bool=False):
         """Defines an action.
         Decides whether an action is activated when instantiated.
 

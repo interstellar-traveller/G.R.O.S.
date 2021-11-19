@@ -1,7 +1,10 @@
+import sys
+sys.path.append("f:/0Desk/IBDP/ComputerScience/IA/code/GROS/src")
+
 from gros.gesture.Gesture import Gesture
 
 class GestureSequence(object):
-    def __init__(self, name:str, gestureSequence:list(Gesture), activate=True):
+    def __init__(self, name:str, gestureSequence:list, activate=True, position_restrict=False):
         """Initialize a gesture sequence that listens on the cache memory of gestures
 
         Args:
@@ -12,7 +15,7 @@ class GestureSequence(object):
         self._name = name
         self._gestureSequence = gestureSequence
         self._status = activate
-        self.detected = False
+        self.position_restrict = position_restrict
         
     def get_name(self):
         # get name of the gesture
@@ -22,7 +25,7 @@ class GestureSequence(object):
         # get the name of the activation status
         return self._status
         
-    def listen_on_cache(self, cache:list(Gesture)):
+    def listen_on_cache(self, cache:list):
         """listen on the cache memory, sequence is detected, then return True
 
         Args:
@@ -31,13 +34,21 @@ class GestureSequence(object):
         Returns:
             (bool): indicator of whether if the sequence is detected
         """
-        cache_comp = self.cache[-len(self._gestureSequence):-1]
+        cache_comp = cache[-len(self._gestureSequence):]
+        # print(len(self._gestureSequence))
         for i in range(len(cache_comp)):
             if cache_comp[i].get_name() == self._gestureSequence[i].get_name():
-                if cache_comp[i].get_position == self._gestureSequence[i].get_position():
-                    pass
-                else:
-                    return False
+                if self.position_restrict:
+                    if cache_comp[i].get_position() == self._gestureSequence[i].get_position():
+                        pass
+                    else:
+                        return False
             else:
                 return False
         return True
+
+# palm = GestureSequence('palm', [Gesture('palm', True, "right")], position_restrict=True)
+# dpalm = Gesture('palm', 'left')
+# dfist = Gesture('fist', 'right')
+# cache = [dfist, dfist, dpalm]
+# print(palm.listen_on_cache(cache))
