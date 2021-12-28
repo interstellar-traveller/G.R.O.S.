@@ -66,7 +66,7 @@ class SequenceActionPair(object):
             new_status (bool): new activation status
         """
         self.activated = new_status
-   
+  
 # minimize = Action('minimize', True)
 # sap = SequenceActionPair(
 #         GestureSequence(

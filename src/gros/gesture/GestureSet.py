@@ -29,7 +29,6 @@ class GestureSet(object):
         self.gestures_activation = {}
         all_funcs = inspect.getmembers(GestureSet, inspect.isfunction)
         gesture_funcs = []
-        print(all_funcs)
         for index in range(len(all_funcs)):
             if str(list(all_funcs[index])[0]) not in ["__init__","_initGestureSet","_customize_activation","get_all_gestures","update_gesture_activation_status"]:
                 gesture_funcs.append(str(list(all_funcs[index])[0]))

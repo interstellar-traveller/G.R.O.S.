@@ -31,7 +31,6 @@ class Net(torch.nn.Module):
         x=self.predict(x)
         return x
  
- 
 net = Net(2,10,2)  # define the network
 plt.ion()  # something about plotting
 plt.show()
@@ -40,18 +39,18 @@ optimizer = torch.optim.SGD(net.parameters(),lr=0.002)  # optimize parameters
 loss_func = torch.nn.CrossEntropyLoss()  # the target label is NOT an one-hotted
 
 for t in range(1000):
-    out = net(x)   #开始训练
+    out = net(x)   # start training
 
-    loss = loss_func(out,y)  # 一定要预测的值在前，真实值在后
+    loss = loss_func(out,y)  # the predicted value in the front, the real value in the back
 
     # below are
     optimizer.zero_grad()  # clear gradients for next train
     loss.backward()        # backpropagation, compute gradients
     optimizer.step()
-    if t % 2==0:  # 每训练2次 ，打印一次
+    if t % 2==0:  # print onece every two training loops
         # plot and show learning process
         plt.cla()
-        prediction = torch.max(out,1)[1]  # why is 1
+        prediction = torch.max(out,1)[1]
         predy = prediction.data.numpy().squeeze()
         target_y = y.data.numpy()
         plt.scatter(x.data.numpy()[:,0], x.data.numpy()[:,1],c=predy,s=100,lw=0,cmap='RdYlGn')

@@ -57,32 +57,32 @@ class handDetector():
         return lmList
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    cap = cv2.VideoCapture(0)
-    detector = handDetector()
+#     cap = cv2.VideoCapture(0)
+#     detector = handDetector()
 
-    # file = open("./data/palmdata.txt", mode='a')
+#     # file = open("./data/palmdata.txt", mode='a')
 
-    while True:
-        success, img = cap.read()
-        img = detector.findHands(img, draw=True)
-        lmList = detector.findPosition(img, personDraw=False)
-        if len(lmList) != 0:
-            # pass
-            print(lmList)
-            lmList = np.array(lmList)
-            print(lmList.shape)
-            # np.savetxt(file, lmList)
+#     while True:
+#         success, img = cap.read()
+#         img = detector.findHands(img, draw=True)
+#         lmList = detector.findPosition(img, personDraw=False)
+#         if len(lmList) != 0:
+#             # pass
+#             print(lmList)
+#             lmList = np.array(lmList)
+#             print(lmList.shape)
+#             # np.savetxt(file, lmList)
 
-        if cv2.waitKey(1) == 27:
-            cv2.destroyAllWindows()
-            break
+#         if cv2.waitKey(1) == 27:
+#             cv2.destroyAllWindows()
+#             break
 
-        img = cv2.flip(img, 1)
-        cv2.imshow("Image", img)
-        cv2.waitKey(100)
+#         img = cv2.flip(img, 1)
+#         cv2.imshow("Image", img)
+#         cv2.waitKey(100)
         
-    # file.close()
+#     # file.close()
     
-    cv2.destroyAllWindows()
+#     cv2.destroyAllWindows()

@@ -8,11 +8,11 @@ from gros.action.Action import Action
 from gros.action.ActionSet import ActionSet
 from gros.initialize.Initialize import Initialize
 
-class InitializeModeOS(Initialize):
+class InitializeTest(Initialize):
     def __init__(self) -> None:
         super().__init__()
-        self.action_activation_list = ["switch", "printscreen", "showDeskTop", "minimize"]
-        self.gesture_activation_list = ["palm", "grip", "point", "double_point", "side_palm"]
+        self.action_activation_list = ["showDeskTop", "switch"]
+        self.gesture_activation_list = ["palm", "grip", "side_palm", "horiz_palm"]
         self.partial_action_activation(self.action_activation_list)
         self.partial_gesture_activation(self.gesture_activation_list)
     

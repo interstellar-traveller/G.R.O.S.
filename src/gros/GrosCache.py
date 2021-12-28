@@ -26,7 +26,7 @@ class GrosCache(object):
         """
         return self._limit
     
-    def limit_ristrict(self):
+    def limit_restrict(self):
         """Pop out the first item when the cache list reaches its upper limit
         """
         if len(self._cache) > self._limit:
@@ -56,7 +56,7 @@ class GrosCache(object):
         else:
             return True
 
-    def undate_cache(self, new_ges:Gesture):
+    def update(self, new_ges:Gesture):
         """update the cache memory
 
         Args:
@@ -64,4 +64,4 @@ class GrosCache(object):
         """
         if self.update_permit(self._cache[self._limit-1], new_ges):
             self._cache.append(new_ges)
-            self.limit_ristrict()
+            self.limit_restrict()

@@ -55,5 +55,5 @@ class DataLoader():
         plt.show()
     
 # dl = DataLoader('palmdata.txt', 'r')
-# dl.visualize(0)
 # print(dl.arr_shape())
+# dl.visualize(0)
