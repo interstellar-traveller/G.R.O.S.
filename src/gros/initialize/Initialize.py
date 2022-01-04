@@ -17,12 +17,14 @@ class Initialize(object):
         self.init_gestures()
         self.actions = {}
         self.init_actions()
+        # print(self.gestures)
+        # print(self.actions)
         
     def init_gestures(self):
         """pre-initializing all gestures as default
         """
         all_gestures = list(GestureSet(0).get_all_gestures())
-        print(all_gestures)
+        # print(all_gestures)
         for gesture in all_gestures:
             self.gestures.update({gesture : Gesture(gesture)})
             
@@ -75,6 +77,7 @@ class Initialize(object):
             for gesture in self.gestures.keys():
                 self.gestures[gesture].update_activation_status(True)
         for gesture in self.gesture_activation_list:
+            print(self.gestures)
             self.gestures[gesture].update_activation_status(True)
     
     

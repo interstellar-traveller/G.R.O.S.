@@ -11,6 +11,7 @@ class GestureSequence(object):
             name (str): the name of the gesture sequence
             gestureSequence (list): a list of gesture that forms the gesture sequence
             activate (bool, optional): the activation status. Defaults to True.
+            position_restrict (bool, optional): position restrict control. Gestures at different position may be marked as different gestures.
         """
         self._name = name
         self._gestureSequence = gestureSequence

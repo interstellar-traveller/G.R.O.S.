@@ -2,25 +2,26 @@ import sys
 import cv2
 import mediapipe as mp
 import numpy as np
-from gros.gesture.Gesture import Gesture
 
+sys.path.append("f:/0Desk/IBDP/ComputerScience/IA/code/GROS/src")
+
+from gros.gesture.Gesture import Gesture
 from gros.initialize.Initialize import Initialize
+from gros.initialize.initializeTest import InitializeTest
 from nn.training.handDetector import handDetector
 from gros.GrosCache import GrosCache
 from utils.Errors import FuncNoResponseError
-
-sys.path.append("f:/0Desk/IBDP/ComputerScience/IA/code/GROS/src")
 
 # MAIN
 if __name__ == "__main__":
     
     # initialize
-    init_box = Initialize()
+    init_box = InitializeTest()
     print(init_box.get_gestures())
     
-    
     # initialize sequence-to-action pool
-    pool = []
+    pool = init_box.pairing()
+    print(pool)
     
     landMarkCaptured = False
     gestureDetected = False
@@ -39,11 +40,14 @@ if __name__ == "__main__":
         print(e)
         sys.exit(1)
         
-        
     # camera stream loop (main function loop start)
     cap = cv2.VideoCapture(0)
     detector = handDetector()
     while True:
+        if cv2.waitKey(1) == 27:
+            cv2.destroyAllWindows()
+            break
+        
         setting = False
         # check if customize settings
         buttonSetPressed = True
@@ -51,10 +55,10 @@ if __name__ == "__main__":
             setting = True
             
         if setting:
-            pass
             # rechoosing gesture/sequence-action pairs
             
-            
+            # close customize setting mode
+            setting = False
             # apply changes by re-initializing
         
         success, img = cap.read()

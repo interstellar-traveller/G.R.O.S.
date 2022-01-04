@@ -31,7 +31,7 @@ class Action():
         """
         return self.activate
     
-    def update_activatation_status(self, activate:bool):
+    def update_activation_status(self, activate:bool):
         """update the activation status of this action
 
         Args:
