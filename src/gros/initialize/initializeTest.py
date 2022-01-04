@@ -26,5 +26,5 @@ class InitializeTest(Initialize):
             pool.append(SequenceActionPair(gesPool[i], Action(self.action_activation_list[i], activate=True)))
         return pool
     
-init_box = InitializeTest()
-print(init_box.pairing)
+# init_box = InitializeTest()
+# print(init_box.pairing)

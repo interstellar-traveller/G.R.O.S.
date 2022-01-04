@@ -7,7 +7,7 @@ class GrosCache(object):
         Args:
             limit (int, optional): The limit length of the cache list. Defaults to 3.
         """
-        self._cache = []
+        self._cache = [Gesture("placeholder"), Gesture("placeholder"), Gesture("placeholder")]
         self._limit = limit
         
     def get_cache(self):

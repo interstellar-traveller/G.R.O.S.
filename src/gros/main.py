@@ -17,7 +17,7 @@ if __name__ == "__main__":
     
     # initialize
     init_box = InitializeTest()
-    print(init_box.get_gestures())
+    # print(init_box.get_gestures())
     
     # initialize sequence-to-action pool
     pool = init_box.pairing()
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     cache = GrosCache(limit=3)
     # TODO: test code, when finished, delete
     try: # check Cache is correctly initialized
-        if type(cache.get_cache()) is list and len(cache.get_cache()) == 0:
+        if type(cache.get_cache()) is list and len(cache.get_cache()) == 3:
             print("Cache successfully initialized...")
             pass
         else:
@@ -44,9 +44,9 @@ if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
     detector = handDetector()
     while True:
-        if cv2.waitKey(1) == 27:
+        if cv2.waitKey(100) == 27:
             cv2.destroyAllWindows()
-            break
+            sys.exit(0)
         
         setting = False
         # check if customize settings
@@ -64,6 +64,8 @@ if __name__ == "__main__":
         success, img = cap.read()
         img = detector.findHands(img, draw=True)
         lmList = detector.findPosition(img, personDraw=False)
+        img = cv2.flip(img, 1)
+        cv2.imshow("Image", img)
         if len(lmList) != 0:
             landMarkCaptured = True
         
@@ -76,6 +78,7 @@ if __name__ == "__main__":
                 gestureDetected = True
 
         cache.update(Gesture(gestureType))
+        # print(cache.get_cache())
 
 
             ## listen on cache and trigger

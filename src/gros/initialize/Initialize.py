@@ -77,7 +77,6 @@ class Initialize(object):
             for gesture in self.gestures.keys():
                 self.gestures[gesture].update_activation_status(True)
         for gesture in self.gesture_activation_list:
-            print(self.gestures)
             self.gestures[gesture].update_activation_status(True)
     
     
