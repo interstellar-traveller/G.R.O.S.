@@ -30,35 +30,40 @@ class Net(torch.nn.Module):
         x=F.relu(self.hidden(x))
         x=self.predict(x)
         return x
+    
+    # TODO
+    def use(self, img):
+        prediction = torch.max(self.predict,1)[1]
+        return prediction
  
-net = Net(2,10,2)  # define the network
-plt.ion()  # something about plotting
-plt.show()
+# net = Net(2,10,2)  # define the network
+# plt.ion()  # something about plotting
+# plt.show()
+
+# optimizer = torch.optim.SGD(net.parameters(),lr=0.002)  # optimize parameters
+# loss_func = torch.nn.CrossEntropyLoss()  # the target label is NOT an one-hotted
+
+# for t in range(1000):
+#     out = net(x)   # start training
+
+#     loss = loss_func(out,y)  # the predicted value in the front, the real value in the back
+
+#     # below are
+#     optimizer.zero_grad()  # clear gradients for next train
+#     loss.backward()        # backpropagation, compute gradients
+#     optimizer.step()
+#     if t % 2==0:  # print onece every two training loops
+#         # plot and show learning process
+#         plt.cla()
+#         prediction = torch.max(out,1)[1]
+#         predy = prediction.data.numpy().squeeze()
+#         target_y = y.data.numpy()
+#         plt.scatter(x.data.numpy()[:,0], x.data.numpy()[:,1],c=predy,s=100,lw=0,cmap='RdYlGn')
+#         accuracy = sum(predy == target_y)/200
+#         plt.text(1.5,-4,'Accuracy=%.2f' % accuracy,fontdict={'size':20,'color':'red'})
+#         if accuracy >= 1:
+#             break
+#         plt.pause(0.001)
  
-optimizer = torch.optim.SGD(net.parameters(),lr=0.002)  # optimize parameters
-loss_func = torch.nn.CrossEntropyLoss()  # the target label is NOT an one-hotted
-
-for t in range(1000):
-    out = net(x)   # start training
-
-    loss = loss_func(out,y)  # the predicted value in the front, the real value in the back
-
-    # below are
-    optimizer.zero_grad()  # clear gradients for next train
-    loss.backward()        # backpropagation, compute gradients
-    optimizer.step()
-    if t % 2==0:  # print onece every two training loops
-        # plot and show learning process
-        plt.cla()
-        prediction = torch.max(out,1)[1]
-        predy = prediction.data.numpy().squeeze()
-        target_y = y.data.numpy()
-        plt.scatter(x.data.numpy()[:,0], x.data.numpy()[:,1],c=predy,s=100,lw=0,cmap='RdYlGn')
-        accuracy = sum(predy == target_y)/200
-        plt.text(1.5,-4,'Accuracy=%.2f' % accuracy,fontdict={'size':20,'color':'red'})
-        if accuracy >= 1:
-            break
-        plt.pause(0.001)
- 
-plt.ioff()
-plt.show()
+# plt.ioff()
+# plt.show()

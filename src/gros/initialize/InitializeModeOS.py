@@ -7,13 +7,23 @@ from gros.gesture.GestureSequence import GestureSequence
 from gros.action.Action import Action
 from gros.action.ActionSet import ActionSet
 from gros.initialize.Initialize import Initialize
+from gros.initialize.SequenceActionPair import SequenceActionPair
 
 class InitializeModeOS(Initialize):
     def __init__(self) -> None:
         super().__init__()
-        self.action_activation_list = ["switch", "printscreen", "showDesktop", "minimize"]
-        self.gesture_activation_list = ["palm", "fist", "point", "double_point", "side_palm"]
+        self.action_activation_list = ["showDesktop", "switch", "printscreen", "minimize"]
+        self.gesture_activation_list = ["palm", "fist", "double_point", "side_palm", "horiz_palm"]
         self.partial_action_activation(self.action_activation_list)
         self.partial_gesture_activation(self.gesture_activation_list)
     
-    
+    def pairing(self):
+        gesPool = []
+        gesPool.append(GestureSequence("side_grip", [Gesture("side_palm"), Gesture("side_fist")])) # showDesktop
+        gesPool.append(GestureSequence("swip", [Gesture("side_palm"), Gesture("horiz_palm")])) # switch
+        gesPool.append(GestureSequence("grip", [Gesture("palm"), Gesture("fist")])) # printscreen
+        gesPool.append(GestureSequence("hook", [Gesture("double_point"), Gesture("fist")])) # minimize
+        pool = []
+        for i in range(len(gesPool)):
+            pool.append(SequenceActionPair(gesPool[i], Action(self.action_activation_list[i], activate=True)))
+        return pool

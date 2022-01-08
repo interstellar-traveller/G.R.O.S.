@@ -1,14 +1,31 @@
 from gros.gesture.Gesture import *
 
 class GrosCache(object):
-    def __init__(self, limit:int=3) -> None:
+    def __init__(self, gestureActivationStatus:dict, limit:int=3) -> None:
         """Maintains a cache that stores a sequence of gestures detected
 
         Args:
             limit (int, optional): The limit length of the cache list. Defaults to 3.
         """
         self._cache = [Gesture("placeholder"), Gesture("placeholder"), Gesture("placeholder")]
+        self.gesActStatus = gestureActivationStatus
         self._limit = limit
+        self.placeHoldThreshhold = 2
+        self.buffer = 0
+        
+    def update_gesActStatus(self, new_gestureActivationStatus:dict):
+        """update the gesture activation status dictionary when mode changes
+
+        Args:
+            new_gestureActivationStatus (dict(Gesture)): 
+            the new gesture activation status dictionary from the initialization box
+        """
+        self.gesActStatus = new_gestureActivationStatus
+        
+    def reset(self):
+        """reset the cache memory when mode changes
+        """
+        self._cache = [Gesture("placeholder"), Gesture("placeholder"), Gesture("placeholder")]
         
     def get_cache(self):
         """get current cache list
@@ -51,11 +68,11 @@ class GrosCache(object):
         Returns:
             (bool): True or False condition
         """
-        if prev.get_name == curr.get_name and prev.get_position == curr.get_position:
+        if prev.get_name() == curr.get_name() and prev.get_position() == curr.get_position():
             return False
         else:
             return True
-
+            
     def update(self, new_ges:Gesture):
         """update the cache memory
 

@@ -35,21 +35,29 @@ class GestureSequence(object):
         Returns:
             (bool): indicator of whether if the sequence is detected
         """
+        # print(self._gestureSequence)
         cache_comp = cache[-len(self._gestureSequence):]
-        # print(len(self._gestureSequence))
+        # print(cache_comp)
         for i in range(len(cache_comp)):
             if cache_comp[i].get_name() == self._gestureSequence[i].get_name():
+                # print(1)
                 if self.position_restrict:
+                    # print(2)
                     if cache_comp[i].get_position() == self._gestureSequence[i].get_position():
+                        # print(3)
                         pass
                     else:
+                        # print(4)
+                        # print(cache_comp[i].get_position())
                         return False
             else:
+                # print(5)
                 return False
+        # print(6)
         return True
 
-# palm = GestureSequence('palm', [Gesture('palm', True, "right")], position_restrict=True)
-# dpalm = Gesture('palm', 'left')
-# dfist = Gesture('fist', 'right')
+# grip = GestureSequence('grip', [Gesture('fist', position='right'), Gesture('palm', True, "left")], position_restrict=True)
+# dpalm = Gesture('palm', position='left')
+# dfist = Gesture('fist', position='right')
 # cache = [dfist, dfist, dpalm]
-# print(palm.listen_on_cache(cache))
+# print(grip.listen_on_cache(cache))

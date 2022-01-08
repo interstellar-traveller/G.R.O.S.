@@ -52,8 +52,12 @@ class DataLoader():
         y = [item[2] for item in data_set]
         plt.scatter(x, y)
         plt.gca().invert_yaxis() 
-        plt.show()
+        plt.draw()
+        plt.pause(1)
+        plt.close()
     
-# dl = DataLoader('palmdata.txt', 'r')
-# print(dl.arr_shape())
-# dl.visualize(0)
+dl = DataLoader('palmdata.txt', 'r')
+print(dl.arr_shape())
+for i in range(0, 100):
+    dl.visualize(i)
+    

@@ -1,0 +1,11 @@
+# file = open("./interact.txt", mode="w")
+# file.write("hello")
+file = open("./interact.txt", mode="r")
+mode = file.readline().split(" ")
+mode[0] = "DOC"
+print(mode)
+file = open("./interact.txt", mode="w")
+file.write(' '.join(mode))
+file = open("./interact.txt", mode="r")
+print(file.read())
+file.close()

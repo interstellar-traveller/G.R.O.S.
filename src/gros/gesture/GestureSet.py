@@ -91,8 +91,17 @@ class GestureSet(object):
     
     def double_point(self):
         status = self.gestures["double_point"]
-        
         return status
+    
+    def thumb_up(self):
+        status = self.gestures["thumbs_up"]
+        return status
+    
+    def three_open(self):
+        # stretch out the thumb, the index, and the middle finger
+        status = self.gestures["three_open"]
+        return status
+    
     
 # ges = GestureSet(0)
 # print(ges.gestures)

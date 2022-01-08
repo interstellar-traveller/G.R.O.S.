@@ -65,12 +65,19 @@ class ActionSet(object):
     def switch(self):
         # switch between the first two opened pages
         pg.keyDown('alt')
+        pg.keyDown('ctrl')
         pg.press('tab')
+        pg.keyUp('ctrl')
         pg.keyUp('alt')
         
     def printScreen(self):
-        # printscreen (full-screen)
-        pg.press('printscreen')
+        # open printscreen
+        pg.keyDown("win")
+        pg.keyDown("shift")
+        pg.keyDown("s")
+        pg.keyUp("s")
+        pg.keyUp("shift")
+        pg.keyUp("win")
 
     def showDesktop(self):
         # show the desktop of your computer
@@ -97,6 +104,9 @@ class ActionSet(object):
     def enter(self):
         # press enter
         pg.press("enter")
+        
+    def exit(self):
+        pg.press("esc")
     
     # virtual desktop actions
     def create(self):
@@ -135,7 +145,7 @@ class ActionSet(object):
         pg.keyUp("ctrl")
         pg.keyUp("win")
 
-    # document mode actions
+    # document mode (additional actions to desktop mode)
     def save(self):
         pg.keyDown('ctrl')
         pg.press('s')

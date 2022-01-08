@@ -59,10 +59,10 @@ class Initialize(object):
         Args:
             activation_list (list): a list of actions' names that are wished to be activated
         """
-        if len(self.action_activation_list) == 0:
+        if len(activation_list) == 0:
             for action in self.actions.keys():
                 self.actions[action].update_activation_status(True)
-        for action in self.action_activation_list:
+        for action in activation_list:
             self.actions[action].update_activation_status(True)
             
     def partial_gesture_activation(self, activation_list):
@@ -73,10 +73,10 @@ class Initialize(object):
         Args:
             activation_list (list): a list of gestures' names that are wished to be activated
         """
-        if len(self.gesture_activation_list) == 0:
+        if len(activation_list) == 0:
             for gesture in self.gestures.keys():
                 self.gestures[gesture].update_activation_status(True)
-        for gesture in self.gesture_activation_list:
+        for gesture in activation_list:
             self.gestures[gesture].update_activation_status(True)
     
     
