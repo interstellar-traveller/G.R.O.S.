@@ -50,12 +50,9 @@ except FuncNoResponseError as e:
 # detector = handDetector()
 cur_stream = 0
 while True:
-    try:
-        cap = cv2.VideoCapture(cur_stream, cv2.CAP_DSHOW)
-        detector = handDetector()
-    except cv2.error:
-        cur_stream = 0
-        continue
+    
+    cap = cv2.VideoCapture(cur_stream, cv2.CAP_DSHOW)
+    detector = handDetector()
     
     stamp = time.time()
     while True:
@@ -63,6 +60,7 @@ while True:
         img = detector.findHands(img, draw=True)
         lmList = detector.findPosition(img, personDraw=False)
         img = cv2.flip(img, 1)
+        cv2.waitKey(100)
         
         # read interaction file and store the data pulled from the GUI
         file = open("./interact.txt", mode="r")
